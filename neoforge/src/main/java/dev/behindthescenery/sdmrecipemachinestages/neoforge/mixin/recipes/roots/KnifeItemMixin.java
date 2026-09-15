@@ -39,6 +39,6 @@ public abstract class KnifeItemMixin extends TieredItem {
     public <V, C extends RecipeInput, T extends Recipe<C> & IRootsRecipe<C>> RecipeHolder<T> bts$revalidateRecipe$redirect(ResolvingRecipeType<V,C,T> instance, C c, Level inventory) {
         final RecipeHolder<T> recipe = instance.findRecipe(c, inventory);
         if(recipe == null) return null;
-        return RMSUtils.canProcess(RMSUtils.getPlayerId(bts$player), recipe) ? recipe : null;
+        return RMSUtils.canProcess(bts$player, recipe) ? recipe : null;
     }
 }

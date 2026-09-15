@@ -14,5 +14,5 @@ pluginManagement {
 rootProject.name = 'sdmrecipemachinestages'
 
 include 'common'
-include 'fabric'
+// This fork uses AStages, which is available on NeoForge for Minecraft 1.21.1.
 include 'neoforge'

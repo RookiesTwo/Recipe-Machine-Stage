@@ -7,10 +7,6 @@ import dev.behindthescenery.sdmrecipemachinestages.compat.IRecipeUpdateListener;
 import dev.behindthescenery.sdmrecipemachinestages.data.RMSContainer;
 import dev.behindthescenery.sdmrecipemachinestages.utils.RMSRecipeUtils;
 import dev.behindthescenery.sdmrecipemachinestages.utils.RMSUtils;
-import dev.behindthescenery.sdmstages.StageApi;
-import dev.behindthescenery.sdmstages.data.StageContainer;
-import dev.behindthescenery.sdmstages.data.StageContainerType;
-import dev.behindthescenery.sdmstages.data.containers.Stage;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.server.MinecraftServer;
@@ -35,23 +31,11 @@ public class RMSMain {
     private static List<IRecipeUpdateListener> listeners = new ArrayList<>();
 
     private static MinecraftServer currentServer;
-    private static boolean isGlobal;
-    private static StageContainer ServerContainer;
     private static RegistryAccess.Frozen registryAccess;
     private static RecipeManager recipeManager;
 
     public static void onServerStarted(MinecraftServer server) {
         onServerReloadResources(server, false);
-        StageApi.reloadServerStage(server);
-        ServerContainer = StageApi.getServerStage();
-
-        if(ServerContainer == null) {
-            StageApi.reloadServerStage(server);
-
-            ServerContainer = StageApi.getServerStage();
-        }
-
-        isGlobal = ServerContainer.getContainerType() == StageContainerType.GLOBAL;
         syncDataWithPlayers();
     }
 
@@ -77,14 +61,6 @@ public class RMSMain {
         return currentServer;
     }
 
-    public static StageContainer getStageContainer() {
-        return ServerContainer;
-    }
-
-    public static boolean isGlobal() {
-        return isGlobal;
-    }
-
     public static RegistryAccess.Frozen getRegistryAccess() {
         return registryAccess;
     }
@@ -104,7 +80,7 @@ public class RMSMain {
         LOGGER.info("Register Recipe Listener: {}", listener.getClass().getName());
     }
 
-    public static void onStageSync(Stage stage, StageContainer stageContainer) {
+    public static void onStageSync() {
         getListeners().forEach(IRecipeUpdateListener::updateRecipe);
     }
 

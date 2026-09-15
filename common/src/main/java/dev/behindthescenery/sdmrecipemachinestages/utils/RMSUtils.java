@@ -6,8 +6,8 @@ import dev.behindthescenery.sdmrecipemachinestages.custom_data.BlockOwnerData;
 import dev.behindthescenery.sdmrecipemachinestages.custom_data.CustomData;
 import dev.behindthescenery.sdmrecipemachinestages.data.RMSContainer;
 import dev.behindthescenery.sdmrecipemachinestages.data.RecipeBlockType;
-import dev.behindthescenery.sdmstages.StageApi;
-import dev.behindthescenery.sdmstages.data.containers.Stage;
+import com.alessandro.astages.api.holder.AHolder;
+import com.alessandro.astages.api.util.AStagesUtils;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -76,7 +76,7 @@ public class RMSUtils {
     public static <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> filterRecipes(
             Collection<RecipeHolder<T>> original, Player player
     ) {
-        return filterRecipes(original, getPlayerId(player), null);
+        return filterRecipes(original, player, null);
     }
 
     public static <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> filterRecipes(
@@ -86,9 +86,15 @@ public class RMSUtils {
     }
 
     public static <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> filterRecipes(
-            Collection<RecipeHolder<T>> original, Player player, Predicate<RecipeHolder<T>> predicate
+            Collection<RecipeHolder<T>> original, Player player, @Nullable Predicate<RecipeHolder<T>> predicate
     ) {
-        return filterRecipes(original, getPlayerId(player), predicate);
+        final List<RecipeHolder<T>> result = new ArrayList<>(original.size());
+        for (final RecipeHolder<T> holder : original) {
+            if (canProcess(player, holder) && (predicate == null || predicate.test(holder))) {
+                result.add(holder);
+            }
+        }
+        return result;
     }
 
     public static <I extends RecipeInput, T extends Recipe<I>> List<RecipeHolder<T>> filterRecipes(
@@ -134,7 +140,9 @@ public class RMSUtils {
     }
 
     public static boolean canProcess(Player player, RecipeHolder<? extends Recipe<?>> recipe) {
-        return canProcess(getPlayerId(player), recipe);
+        if (recipe == null || player == null) return false;
+        final RecipeBlockType blockType = getRecipeBlockData(recipe);
+        return blockType == null || hasPlayerStage(player, blockType.stageId());
     }
 
     public static boolean canProcess(UUID player, RecipeHolder<? extends Recipe<?>> recipe) {
@@ -149,13 +157,14 @@ public class RMSUtils {
     }
 
     public static boolean hasPlayerStage(Player player, String stage_id) {
+        if (player.level().isClientSide()) return hasClientStage(stage_id);
         return hasPlayerStage(getPlayerId(player), stage_id);
     }
 
     public static boolean hasPlayerStage(UUID playerId, String stage_id) {
-        final Stage stageData = RMSMain.getStageContainer().getStage(playerId);
-        if(stageData == null) return false;
-        return stageData.contains(stage_id);
+        // Query by UUID so machines keep working while their owner is offline.
+        return AStagesUtils.hasStage(AHolder.server(), stage_id)
+                || (playerId != null && AStagesUtils.hasStage(AHolder.player(playerId), stage_id));
     }
 
 
@@ -212,7 +221,7 @@ public class RMSUtils {
     }
 
     public static boolean hasClientStage(String stage_id) {
-        return StageApi.getClientStage().contains(stage_id);
+        return RMSStageUtilsClient.hasStage(stage_id);
     }
 
     public static boolean checkIfBockEntityCurrentType(BlockEntity block) {

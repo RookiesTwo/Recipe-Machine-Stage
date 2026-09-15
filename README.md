@@ -1,6 +1,16 @@
 # Recipe Machine Stage
 This mod provides the ability to block recipes for mechanisms, similar to how it is implemented in Recipe Stages for the workbench.
 
+## This fork: AStages / NeoForge 1.21.1
+
+- This fork uses **AStages 2.5.2-1.21.1** as its stage provider. Install AStages on both the client and server; **SDM Stages is no longer required**.
+- A recipe is unlocked if its stage is present in either the player's AStages stages or the server's global AStages stages. Machine owners are queried by UUID, including offline owners.
+- Stage changes are read directly from AStages; player and server stage sync events refresh recipe viewers. Existing `RMSEvents.register` / CraftTweaker recipe registration syntax is unchanged.
+- SDM Stages save data is not migrated automatically. Existing stage grants must be recreated in AStages when migrating an existing pack.
+- Only the NeoForge module is built. The original Fabric sources are retained but excluded because AStages has no Fabric 1.21.1 release.
+- There is currently **no per-mod Mixin toggle**. Omitting restriction rules usually leaves those recipes usable, but does not disable the compatibility Mixins or their other changes.
+- Iron's Spells 'n Spellbooks scroll forge filtering is not implemented yet; its spell list needs a separate integration.
+
 ## [CurseForge](https://www.curseforge.com/minecraft/mc-mods/recipe-machine-stages)
 
 

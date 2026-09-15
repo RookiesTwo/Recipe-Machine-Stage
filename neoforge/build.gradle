@@ -53,7 +53,7 @@ dependencies {
     common(project(path: ':common', configuration: 'namedElements')) { transitive false }
     shadowBundle project(path: ':common', configuration: 'transformProductionNeoForge')
 
-    modImplementation "curse.maven:sdm-stages-1082036:7142645"
+    modImplementation "curse.maven:astages-1120180:$rootProject.astages_file_id"
     modImplementation "curse.maven:crafttweaker-239197:6929483"
 
 //    api("dev.latvian.mods:kubejs-neoforge:2101.7.2-build.348")
@@ -108,7 +108,7 @@ def implementsMods(DependencyHandler deps) {
     //Create
     deps.modImplementation("com.tterrag.registrate:Registrate:${registrate_version}")
     deps.modImplementation("com.simibubi.create:create-$minecraft_version:$create_version:slim") { transitive = false }
-    deps.modImplementation("net.createmod.ponder:Ponder-NeoForge-$minecraft_version:$ponder_version")
+    deps.modImplementation("net.createmod.ponder:ponder-neoforge:$ponder_version+mc$minecraft_version")
 
     deps.modCompileOnly("dev.engine-room.flywheel:flywheel-neoforge-api-$minecraft_version:$flywheel_version") //NOT CHANGE FROM modCompileOnly
 //    deps.modRuntimeOnly("dev.engine-room.flywheel:flywheel-neoforge-$minecraft_version:$flywheel_version") //NOT CHANGE FROM modRuntimeOnly

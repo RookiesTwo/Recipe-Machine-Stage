@@ -34,7 +34,7 @@ dependencies {
     shadowBundle project(path: ':common', configuration: 'transformProductionFabric')
 
     modImplementation "curse.maven:fabric-api-306612:7081224"
-    modImplementation "curse.maven:sdm-stages-1082036:7142644"
+    // Fabric is excluded from this AStages-based fork's settings.gradle.
 //    modImplementation "curse.maven:jei-238222:7129284"
 
 

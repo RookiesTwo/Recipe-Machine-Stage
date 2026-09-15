@@ -53,7 +53,7 @@ public class RMSLodeStoneUtils {
 
             final List<Player> player = entity.getLevel().getEntitiesOfClass(Player.class, new AABB(x - distance, y - distance, z - distance, x + distance, y + distance, z + distance));
             if(!player.isEmpty()) {
-                recipes = RMSUtils.filterRecipes(LodestoneRecipeType.getRecipeHolders(level, recipeType), RMSUtils.getPlayerId(player.getFirst()));
+                recipes = RMSUtils.filterRecipes(LodestoneRecipeType.getRecipeHolders(level, recipeType), player.getFirst());
             } else return null;
         }
 

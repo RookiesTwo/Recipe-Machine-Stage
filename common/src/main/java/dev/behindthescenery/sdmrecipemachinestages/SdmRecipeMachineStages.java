@@ -7,7 +7,6 @@ import dev.architectury.networking.NetworkManager;
 import dev.behindthescenery.sdmrecipemachinestages.network.SyncRMSContainerDataS2C;
 import dev.behindthescenery.sdmrecipemachinestages.network.SyncRecipesAndStagesS2C;
 import dev.behindthescenery.sdmrecipemachinestages.supported.RMSSupportedTypes;
-import dev.behindthescenery.sdmstages.events.StagesEvents;
 
 public final class SdmRecipeMachineStages {
     public static final String MOD_ID = "sdmrecipemachinestages";
@@ -15,7 +14,6 @@ public final class SdmRecipeMachineStages {
     public static void init() {
         RMSSupportedTypes.init();
         LifecycleEvent.SERVER_BEFORE_START.register(RMSMain::onServerStarted);
-        StagesEvents.ON_STAGE_SYNC.register(RMSMain::onStageSync);
         BlockEvent.PLACE.register(RMSMain::onPlaceBlock);
         PlayerEvent.PLAYER_JOIN.register(RMSMain::onPlayerJoin);
 

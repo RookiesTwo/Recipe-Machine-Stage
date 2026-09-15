@@ -30,7 +30,7 @@ public abstract class SolderingMenuMixin extends AbstractContainerMenu {
 
     @Redirect(method = "onPlayerChoseRecipe", at = @At(value = "INVOKE", target = "Lcommoble/morered/soldering/SolderingMenu;getSolderingRecipe(Lnet/minecraft/world/item/crafting/RecipeManager;Lnet/minecraft/resources/ResourceLocation;)Lnet/minecraft/world/item/crafting/RecipeHolder;"))
     public @Nullable RecipeHolder<SolderingRecipe> bts$onPlayerChoseReciper$redirect(RecipeManager manager, ResourceLocation id) {
-        final List<RecipeHolder<SolderingRecipe>> recipes = RMSUtils.filterRecipes( manager.getAllRecipesFor(MoreRed.get().solderingRecipeType.get()), RMSUtils.getPlayerId(player));
+        final List<RecipeHolder<SolderingRecipe>> recipes = RMSUtils.filterRecipes( manager.getAllRecipesFor(MoreRed.get().solderingRecipeType.get()), player);
         for (RecipeHolder<SolderingRecipe> recipe : recipes) {
             if(recipe.id().equals(id)) return recipe;
         }

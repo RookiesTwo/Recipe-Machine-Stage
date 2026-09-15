@@ -10,7 +10,7 @@ dependencies {
 
     modImplementation "dev.architectury:architectury:$rootProject.architectury_api_version"
 
-    modCompileOnly "curse.maven:sdm-stages-1082036:7142644"
+    modCompileOnly "curse.maven:astages-1120180:$rootProject.astages_file_id"
     compileOnly "curse.maven:crafttweaker-239197:6929483"
     compileOnly "curse.maven:kubejs-238086:7136630"
     compileOnly "curse.maven:rhino-416294:7104526"
