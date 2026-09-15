@@ -4,6 +4,7 @@
   "compatibilityLevel": "JAVA_21",
   "minVersion": "0.8",
   "client": [
+    "recipes.irons_spell_books.ScrollForgeScreenMixin"
   ],
   "mixins": [
     "NeoForgeAbstractFurnaceBlockEntityMixin",
@@ -42,6 +43,8 @@
     "recipes.create.fan_process.FanSplashingType",
     "recipes.irons_spell_books.AlchemistCauldronTileMixin",
     "recipes.irons_spell_books.ArcaneAnvilMenuMixin",
+    "recipes.irons_spell_books.ScrollForgeMenuMixin",
+    "recipes.irons_spell_books.ScrollForgeSelectSpellPacketMixin",
     "recipes.jumbo_furnace.JumboFurnaceCoreBlockEntityMixin",
     "recipes.jumbo_furnace.JumboFurnaceMixin",
     "recipes.malum.RepairPylonCoreBlockEntityMixin",

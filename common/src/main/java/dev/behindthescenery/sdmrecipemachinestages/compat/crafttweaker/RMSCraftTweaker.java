@@ -20,6 +20,16 @@ import java.util.stream.Stream;
 @ZenCodeType.Name("mods.rms.RMS")
 public class RMSCraftTweaker {
 
+    @ZenCodeType.Method
+    public static void addScrollForgeSpell(String spellId, String stage) {
+        RMSApi.addScrollForgeSpell(spellId, stage);
+    }
+
+    @ZenCodeType.Method
+    public static void addScrollForgeSpells(String[] spellIds, String stage) {
+        RMSApi.addScrollForgeSpells(spellIds, stage);
+    }
+
     /**
      * The method that blocks the recipe
      * @param recipeType Recipe Type (In CraftTweaker <recipeTypeId:minecraft:smelting> you need write without prefix <recipeTypeId>. "minecraft:smelting")

@@ -4,6 +4,7 @@ import com.mojang.logging.LogUtils;
 import dev.architectury.event.EventResult;
 import dev.behindthescenery.sdmrecipemachinestages.api.RMSApi;
 import dev.behindthescenery.sdmrecipemachinestages.compat.IRecipeUpdateListener;
+import dev.behindthescenery.sdmrecipemachinestages.compat.RMSScrollForgeRules;
 import dev.behindthescenery.sdmrecipemachinestages.data.RMSContainer;
 import dev.behindthescenery.sdmrecipemachinestages.utils.RMSRecipeUtils;
 import dev.behindthescenery.sdmrecipemachinestages.utils.RMSUtils;
@@ -47,6 +48,7 @@ public class RMSMain {
         RMSRecipeUtils.reloadRecipeTypes(recipeManager);
         RMSContainer.Instance.startReloading(server);
         RMSContainer.Instance.endReloading(server);
+        RMSScrollForgeRules.syncAll();
 
 //        if(isSync) {
 //            syncDataWithPlayers();
@@ -81,6 +83,7 @@ public class RMSMain {
     }
 
     public static void onStageSync() {
+        RMSScrollForgeRules.clientStagesChanged();
         getListeners().forEach(IRecipeUpdateListener::updateRecipe);
     }
 
@@ -105,5 +108,6 @@ public class RMSMain {
 
     public static void onPlayerJoin(ServerPlayer player) {
         RMSContainer.Instance.sendTo(player);
+        RMSScrollForgeRules.sendTo(player);
     }
 }

@@ -98,6 +98,7 @@ public class RMSContainer extends SimplePreparableReloadListener<Void> {
 
         clearData();
 
+        dev.behindthescenery.sdmrecipemachinestages.compat.RMSScrollForgeRules.clearServer();
         RMSIntegrations.kubeJSAddRecipes.run();
         send("Invoke 1");
     }

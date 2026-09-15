@@ -13,6 +13,7 @@ public class ClientPacketListenerMixin {
 
     @Inject(method = "handleLogin", at = @At("RETURN"))
     public void bts$handleLogin$after(ClientboundLoginPacket clientboundLoginPacket, CallbackInfo ci) {
+        dev.behindthescenery.sdmrecipemachinestages.compat.RMSScrollForgeRules.receive(java.util.Map.of());
         if(!RMSContainer.Instance.isServer)
             RMSContainer.Instance.clearData();
     }

@@ -33,3 +33,9 @@ replay_pid*
 /neoforge/run
 /.idea
 build/reports/problems/problems-report.html
+
+# Local verification files and companion documentation
+/dev/scroll_forge/
+/common/src/test/java/dev/behindthescenery/sdmrecipemachinestages/data/SpellStageRulesTest.java
+/info_support/irons_spellbooks.md
+/info_support/irons_spellbooks_kubejs_guide_zh.md

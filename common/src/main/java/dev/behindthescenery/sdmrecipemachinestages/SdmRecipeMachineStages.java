@@ -6,6 +6,7 @@ import dev.architectury.event.events.common.PlayerEvent;
 import dev.architectury.networking.NetworkManager;
 import dev.behindthescenery.sdmrecipemachinestages.network.SyncRMSContainerDataS2C;
 import dev.behindthescenery.sdmrecipemachinestages.network.SyncRecipesAndStagesS2C;
+import dev.behindthescenery.sdmrecipemachinestages.network.SyncScrollForgeRulesS2C;
 import dev.behindthescenery.sdmrecipemachinestages.supported.RMSSupportedTypes;
 
 public final class SdmRecipeMachineStages {
@@ -18,6 +19,7 @@ public final class SdmRecipeMachineStages {
         PlayerEvent.PLAYER_JOIN.register(RMSMain::onPlayerJoin);
 
         NetworkManager.registerReceiver(NetworkManager.Side.S2C, SyncRecipesAndStagesS2C.TYPE, SyncRecipesAndStagesS2C.STREAM_CODEC, SyncRecipesAndStagesS2C::handle);
+        NetworkManager.registerReceiver(NetworkManager.Side.S2C, SyncScrollForgeRulesS2C.TYPE, SyncScrollForgeRulesS2C.STREAM_CODEC, SyncScrollForgeRulesS2C::handle);
         NetworkManager.registerReceiver(NetworkManager.Side.S2C, SyncRMSContainerDataS2C.TYPE, SyncRMSContainerDataS2C.STREAM_CODEC, SyncRMSContainerDataS2C::handle);
     }
 }

@@ -33,6 +33,14 @@ public class RMSKubeJsPlugin implements KubeJSPlugin {
 
     public interface Methods {
 
+        static void addScrollForgeSpell(String spellId, String stage) {
+            RMSApi.addScrollForgeSpell(spellId, stage);
+        }
+
+        static void addScrollForgeSpells(String[] spellIds, String stage) {
+            RMSApi.addScrollForgeSpells(spellIds, stage);
+        }
+
         static void addRecipe(String recipeType, String recipe_id, String stage) {
             RMSApi.addRecipe(recipeType, ResourceLocation.tryParse(recipe_id), stage);
         }

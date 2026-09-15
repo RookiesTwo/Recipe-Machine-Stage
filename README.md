@@ -9,7 +9,7 @@ This mod provides the ability to block recipes for mechanisms, similar to how it
 - SDM Stages save data is not migrated automatically. Existing stage grants must be recreated in AStages when migrating an existing pack.
 - Only the NeoForge module is built. The original Fabric sources are retained but excluded because AStages has no Fabric 1.21.1 release.
 - There is currently **no per-mod Mixin toggle**. Omitting restriction rules usually leaves those recipes usable, but does not disable the compatibility Mixins or their other changes.
-- Iron's Spells 'n Spellbooks scroll forge filtering is not implemented yet; its spell list needs a separate integration.
+- Iron's Spells 'n Spellbooks 3.16.3 scroll forge supports per-spell stage restrictions via `addScrollForgeSpell(spellId, stage)` and `addScrollForgeSpells(spellIds, stage)` inside `RMSEvents.register`.
 
 ## [CurseForge](https://www.curseforge.com/minecraft/mc-mods/recipe-machine-stages)
 

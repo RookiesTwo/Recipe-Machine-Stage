@@ -128,9 +128,10 @@ def implementsMods(DependencyHandler deps) {
     deps.modCompileOnly files("./libs/DualCodecs-0.1.2.jar")
 
     //Iron's Spells 'n Spellbooks
-    deps.modCompileOnly "curse.maven:irons-spells-n-spellbooks-855414:7114204"
-    deps.modCompileOnly "curse.maven:geckolib-388172:7023453"
-    deps.modCompileOnly "curse.maven:playeranimator-658587:6024462"
+    deps.modImplementation "curse.maven:irons-spells-n-spellbooks-855414:8680204"
+    deps.modRuntimeOnly "curse.maven:geckolib-388172:7023453"
+    deps.modRuntimeOnly "curse.maven:playeranimator-658587:6024462"
+    deps.modRuntimeOnly "curse.maven:irons-lib-1492763:8364894"
 
     //Jumbo Furnace
     deps.modCompileOnly "curse.maven:jumbo-furnace-390880:6659406"

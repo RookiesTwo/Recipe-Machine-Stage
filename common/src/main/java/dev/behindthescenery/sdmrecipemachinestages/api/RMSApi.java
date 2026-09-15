@@ -20,6 +20,14 @@ import java.util.function.Consumer;
 
 public class RMSApi {
 
+    public static void addScrollForgeSpell(String spellId, String stage) {
+        dev.behindthescenery.sdmrecipemachinestages.compat.RMSScrollForgeRules.register(spellId, stage);
+    }
+
+    public static void addScrollForgeSpells(String[] spellIds, String stage) {
+        for (String spellId : spellIds) addScrollForgeSpell(spellId, stage);
+    }
+
     public static void register(RecipeType<?> recipeType, List<ResourceLocation> recipeIds, String stage) {
         RMSContainer.Instance.register(new RecipeBlockType(stage, recipeType, recipeIds));
         syncRecipesWithPlayers(recipeType, recipeIds, stage);
